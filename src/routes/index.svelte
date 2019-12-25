@@ -1,5 +1,18 @@
 <script>
+  import { onMount } from "svelte";
   import Player from "../components/Player.svelte";
+  import axios from "axios";
+
+  let players = [];
+
+  onMount(() => {
+    axios
+      .get(
+        "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=Arsenal"
+      )
+      .then(res => (players = res.data.player))
+      .catch(err => console.log(err));
+  });
 </script>
 
 <style>
@@ -8,6 +21,7 @@
     padding-top: 100px;
   }
   .content {
+    min-height: 500px;
     background: linear-gradient(180deg, #df332f 0%, #481f1e 80.21%);
     border-radius: 30px 30px 0px 0px;
     padding: 100px 35px;
@@ -27,8 +41,8 @@
 <div class="main">
   <img src="images/arsenal.png" alt="arsenal logo" class="img-logo" />
   <div class="content">
-    {#each [1, 2, 3, 4, 5, 6, 7] as player}
-      <Player />
+    {#each players as player}
+      <Player {player} />
     {/each}
   </div>
 </div>

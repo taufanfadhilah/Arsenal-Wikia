@@ -1,5 +1,20 @@
+<script context="module">
+  export async function preload(page, session) {
+    const { name } = page.params;
+    const res = await this.fetch(
+      `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${name}`
+    );
+    let player = await res.json();
+    player = player.player[0]
+    return { player };
+  }
+</script>
+
 <script>
   import { goto } from "@sapper/app";
+  
+  export let player;
+
   const goBack = () => {
     goto("/");
   };
@@ -21,11 +36,12 @@
   }
   .img-logo {
     width: 140px;
-    height: 165px;
+    height: 140px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: -70px;
+    border-radius: 10px;
   }
   p {
     color: white;
@@ -51,29 +67,24 @@
 </style>
 
 <div class="main">
-  <img src="images/ozil.png" alt="player image" class="img-logo" />
+  <img src="{player.strThumb}" alt="player image" class="img-logo" />
   <div class="content">
-    <p class="bold name">Mesut Ozil</p>
+    <p class="bold name">{player.strPlayer}</p>
     <div class="row">
       <p class="bold">Nationality</p>
-      <p style="text-align: right;">Germarny</p>
+      <p style="text-align: right;">{player.strNationality}</p>
     </div>
     <div class="row">
       <p class="bold">Date Born</p>
-      <p style="text-align: right;">1988-10-25</p>
+      <p style="text-align: right;">{player.dateBorn}</p>
     </div>
     <div class="row">
       <p class="bold">Player Number</p>
-      <p style="text-align: right;">10</p>
+      <p style="text-align: right;">{player.strNumber || '-'}</p>
     </div>
     <p class="bold underline">About Me</p>
     <p class="description">
-      Mesut Özil (born 15 October 1988) is a German footballer who plays for
-      English club Arsenal and the German national team. Özil has been a youth
-      national team member since 2006, and a member of the German national team
-      since 2009. He gained international attention during the 2010 FIFA World
-      Cup and was nominated for the Golden Ball Award, which is awarded to the
-      tournament's best player.
+      {player.strDescriptionEN}
     </p>
     <p class="underline" style="font-size: 12px" on:click={goBack}>
       Return back

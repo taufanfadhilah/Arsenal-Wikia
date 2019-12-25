@@ -1,13 +1,10 @@
 <script>
   import { goto } from "@sapper/app";
-  
-  const onClick = () => {
-    goto("player/ozil");
-  };
-</script>
+  import { css } from "emotion";
 
-<style>
-  .player {
+  export let player;
+
+  export const stylePlayer = css`
     width: 110px;
     height: 130px;
     background: linear-gradient(
@@ -16,7 +13,7 @@
         rgba(0, 0, 0, 0.375) 51.56%,
         #000000 100%
       ),
-      url(../images/ozil.png);
+      url(${player.strThumb});
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
@@ -24,7 +21,14 @@
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
-  }
+  `;
+
+  const onClick = () => {
+    goto(`player/${player.strPlayer}`);
+  };
+</script>
+
+<style>
   .player-name {
     font-size: 12px;
     color: white;
@@ -34,6 +38,6 @@
   }
 </style>
 
-<div class="player" on:click={onClick}>
-  <p class="player-name">Mesut Ozil</p>
+<div class="{stylePlayer}" on:click={onClick}>
+  <p class="player-name">{player.strPlayer}</p>
 </div>
