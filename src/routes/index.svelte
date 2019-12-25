@@ -1,46 +1,34 @@
+<script>
+  import Player from "../components/Player.svelte";
+</script>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  .main {
+    background-color: #9e2321;
+    padding-top: 100px;
+  }
+  .content {
+    background: linear-gradient(180deg, #df332f 0%, #481f1e 80.21%);
+    border-radius: 30px 30px 0px 0px;
+    padding: 100px 35px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+  .img-logo {
+    width: 130px;
+    height: 152.82px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -90px;
+  }
 </style>
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
-
-<h1>Great success!</h1>
-
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>
+<div class="main">
+  <img src="images/arsenal.png" alt="arsenal logo" class="img-logo" />
+  <div class="content">
+    {#each [1, 2, 3, 4, 5, 6, 7] as player}
+      <Player />
+    {/each}
+  </div>
+</div>
