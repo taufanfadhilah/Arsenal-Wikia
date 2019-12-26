@@ -37,8 +37,24 @@
     margin: 100px 15px 0px 15px;
     text-align: center;
   }
+  .fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 </style>
 
-<div class={stylePlayer} on:click={onClick}>
+<div class="{stylePlayer} fade-in" on:click={onClick}>
   <p class="player-name">{player.strPlayer}</p>
 </div>

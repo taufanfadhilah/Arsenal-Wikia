@@ -65,20 +65,33 @@
     font-size: 14px;
     margin-bottom: 50px;
   }
+  .fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+  }
+
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   @media only screen and (min-width: 768px) {
     .content {
       width: 460px;
       margin-left: auto;
       margin-right: auto;
-      background: linear-gradient(180deg, #df332f 0%, #481f1e 80.21%);
-      border-radius: 30px 30px 0px 0px;
-      padding: 100px 35px;
     }
   }
 </style>
 
 <div class="main">
-  <img src={player.strThumb} alt="player image" class="img-logo" />
+  <img src={player.strThumb} alt="player image" class="img-logo fade-in" />
   <div class="content">
     <p class="bold name">{player.strPlayer}</p>
     <div class="row">
