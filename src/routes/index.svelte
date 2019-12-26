@@ -36,6 +36,19 @@
     margin-right: auto;
     margin-bottom: -90px;
   }
+  @media only screen and (min-width: 768px) {
+    .content {
+      min-height: 500px;
+      width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(180deg, #df332f 0%, #481f1e 80.21%);
+      border-radius: 30px 30px 0px 0px;
+      padding: 100px 35px;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+    }
+  }
 </style>
 
 <div class="main">

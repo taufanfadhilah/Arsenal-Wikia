@@ -21,6 +21,7 @@
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
   `;
 
   const onClick = () => {
@@ -38,6 +39,6 @@
   }
 </style>
 
-<div class="{stylePlayer}" on:click={onClick}>
+<div class={stylePlayer} on:click={onClick}>
   <p class="player-name">{player.strPlayer}</p>
 </div>

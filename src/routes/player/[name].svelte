@@ -5,14 +5,14 @@
       `https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${name}`
     );
     let player = await res.json();
-    player = player.player[0]
+    player = player.player[0];
     return { player };
   }
 </script>
 
 <script>
   import { goto } from "@sapper/app";
-  
+
   export let player;
 
   const goBack = () => {
@@ -58,16 +58,27 @@
   }
   .underline {
     text-decoration-line: underline;
+    cursor: pointer;
   }
   .description {
     text-align: justify;
     font-size: 14px;
     margin-bottom: 50px;
   }
+  @media only screen and (min-width: 768px) {
+    .content {
+      width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(180deg, #df332f 0%, #481f1e 80.21%);
+      border-radius: 30px 30px 0px 0px;
+      padding: 100px 35px;
+    }
+  }
 </style>
 
 <div class="main">
-  <img src="{player.strThumb}" alt="player image" class="img-logo" />
+  <img src={player.strThumb} alt="player image" class="img-logo" />
   <div class="content">
     <p class="bold name">{player.strPlayer}</p>
     <div class="row">
@@ -83,9 +94,7 @@
       <p style="text-align: right;">{player.strNumber || '-'}</p>
     </div>
     <p class="bold underline">About Me</p>
-    <p class="description">
-      {player.strDescriptionEN}
-    </p>
+    <p class="description">{player.strDescriptionEN}</p>
     <p class="underline" style="font-size: 12px" on:click={goBack}>
       Return back
     </p>
